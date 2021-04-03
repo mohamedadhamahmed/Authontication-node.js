@@ -38,6 +38,26 @@ router.route("/:username").get(middleware.checkToken,(req,res)=>{
         });
     });
 });
+router.route("/checkusername/:username").get((req,res)=>{
+    User.findOne({username:req.params.username},
+        (err,result)=>{
+            if (err)
+            return res.status(500)
+            .json({msg_error:err});
+            if(result!==null){
+                return res.json({
+                    status:true,
+                    username:req.params.username,
+                });}
+                else{
+                    return res.json({
+                        status:false,
+                        username:req.params.username,
+                    });
+              
+            }
+        }); 
+})
 
 router.route("/login").post((req,res)=>{
     console.log("inside login");

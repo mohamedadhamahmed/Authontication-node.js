@@ -100,7 +100,7 @@ router.route("/delete/:username").delete(middleware.checkToken,(req,res)=>{
     );
 });
 router.route("/register").post((req,res)=>{
-console.log("inside the register");
+console.log("inside the register"+req.body.username);
 const user=new User({
     username:req.body.username,
     password: req.body.password,
@@ -113,7 +113,7 @@ user.save().then(()=>{
     res.status(403).json({msg:err});
 
 });
-res.json("registerd")
+//res.json("registerd")
 })
 
 module.exports=router;

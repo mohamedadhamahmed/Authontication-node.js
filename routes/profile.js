@@ -68,7 +68,7 @@ router.route("/add").post(middleware.checkToken,(req,res)=>
     console.log("inside the Add Profile"+req.body.username);
    
     const user=new profile_model({
-        username:req.body.username,
+        username:req.decoded.username,
         name: req.body.name, 
         DOB:req.body.DOB,
         titleline: req.body.titleline,

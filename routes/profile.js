@@ -91,7 +91,7 @@ router.route("/checkprofile").get(middleware.checkToken,(req,res)=>{
             if (err)
             return res.status(500)
             .json({msg_error:err});
-            if(result!==null){
+            if(result==null){
                 return res.json({
                     status:false,
                    
@@ -99,7 +99,7 @@ router.route("/checkprofile").get(middleware.checkToken,(req,res)=>{
                 else{
                     return res.json({
                         status:true,
-                        username:req.params.username,
+                        username:req.decoded.username,
                     });
               
             }

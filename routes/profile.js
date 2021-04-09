@@ -67,7 +67,7 @@ router.route("/add").post(middleware.checkToken,(req,res)=>
 {
     console.log("inside the Add Profile"+req.body.username);
    
-    const user=new User({
+    const user=new profile_model({
         username:req.body.username,
         name: req.body.name, 
         DOB:req.body.DOB,
@@ -85,7 +85,7 @@ router.route("/add").post(middleware.checkToken,(req,res)=>
     });
 });
 router.route("/checkprofile").get((req,res)=>{
-    User.findOne({username:req.decoded.username},
+    profile_model.findOne({username:req.decoded.username},
         (err,result)=>{
             if (err)
             return res.status(500)

@@ -65,7 +65,7 @@ const error = new Error('Please upload a file')
 });
 router.route("/add").post(middleware.checkToken,(req,res)=>
 {
-    console.log("inside the Add Profile"+req.body.username);
+    console.log("inside the Add Profile :"+req.decoded.username);
    
     const user=new profile_model({
         username:req.decoded.username,
@@ -78,7 +78,8 @@ router.route("/add").post(middleware.checkToken,(req,res)=>
     });
     user.save().then(()=>{
         console.log("Added profile");
-        res.status(200).json("ok profile creted ");
+        
+        res.status(200).json(user);
     }).catch((err)=>{
         res.status(400).json({msg:err});
     

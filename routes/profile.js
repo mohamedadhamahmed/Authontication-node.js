@@ -18,17 +18,27 @@ const storge=multer.diskStorage({
       cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));      }
 });
 
-const filefliter=(req,file,cb)=>{
-    console.log( file.mimetype)
-  if(file.mimetype == 'image/jpeg' || file.mimetype == 'image/png') {
-    console.log("image jpg or png ok");
-   cb(null, true);
-  } else {
-    cb(null, false);
-      cb(new Error('Only .jpg or .png files are accepted'), true);   
-  }
+const filefliter=
+//  (req,file,cb)=>{
+//     console.log( file.mimetype)
+//   if(file.mimetype == 'image/jpeg' || file.mimetype == 'image/png' || file.mimetype == 'image/jpg') {
+//     console.log("image jpg or png ok");
+//    cb(null, true);
+//   } else {
+//     cb(null, false);
+//       cb(new Error('Only .jpg or .png files are accepted'), true);   
+//   }
 
-}
+// }
+ (req, file, cb)=> {
+    var typeArray = file.mimetype.split('/');
+    var fileType = typeArray[1];
+    if (fileType == 'jpeg' || fileType == 'png') {
+      cb(null, true);
+    } else {
+      cb(null, false)
+    }
+  }
 const upload=multer({
   storage:storge,
   limits:{

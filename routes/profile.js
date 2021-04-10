@@ -99,7 +99,7 @@ router.route("/checkprofile").get(middleware.checkToken,(req,res)=>{
                 else{
                     return res.json({
                         status:true,
-                        username:req.decoded.username,
+                        result:result,
                     });
               
             }

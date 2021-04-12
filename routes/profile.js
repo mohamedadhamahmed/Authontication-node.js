@@ -42,9 +42,9 @@ const filefliter=
 const upload=multer({
   storage:storge,
   limits:{
-      fileSize:1024*1024*5,
-  }
-  ,fileFilter:filefliter
+      fileSize:1024*1024*6,
+  },
+  fileFilter:filefliter
 });
   router.route("/add/image").patch(middleware.checkToken,
     upload.single("img"),async(req,res)=>{

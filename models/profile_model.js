@@ -19,8 +19,7 @@ const Profile=Schema({
     image:{
        
         
-            data: Buffer,
-            contentType: String,
+        type:String,
          
         default:"" 
     },

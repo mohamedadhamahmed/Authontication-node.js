@@ -15,7 +15,7 @@ const storge=multer.diskStorage({
   filename:function(req, file, cb) {
      console.log( "offfff"+file.fieldname)
      
-      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));      }
+      cb(null, req.decoded.username+".jpg");      }
 });
 
 const filefliter=
@@ -60,7 +60,7 @@ const error = new Error('Please upload a file')
             {
                 username:req.decoded.username
             },{
-                $set:{image:req.file.path,
+                $set:{img:req.file.path,
                 }},{new:true },(err,profile)=>{
                 if(err)
                 return res.status(500).send(err);
